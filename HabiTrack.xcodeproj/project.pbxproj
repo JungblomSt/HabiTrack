@@ -6,8 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D66504762FA0C937000762CC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66504752FA0C937000762CC /* ContentView.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		D66504702FA0C937000762CC /* HabiTrack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabiTrack.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D66504752FA0C937000762CC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -32,7 +37,9 @@
 		D66504672FA0C937000762CC = {
 			isa = PBXGroup;
 			children = (
-				D66504722FA0C937000762CC /* HabiTrack */,
+				D66504802FA0C973000762CC /* ViewModel */,
+				D665047F2FA0C961000762CC /* View */,
+				D665047E2FA0C94C000762CC /* Model */,
 				D66504712FA0C937000762CC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +50,29 @@
 				D66504702FA0C937000762CC /* HabiTrack.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D665047E2FA0C94C000762CC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D66504722FA0C937000762CC /* HabiTrack */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D665047F2FA0C961000762CC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D66504752FA0C937000762CC /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D66504802FA0C973000762CC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,6 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D66504762FA0C937000762CC /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
