@@ -8,6 +8,7 @@ struct HabitListView: View {
         TabView {
             
             NavigationStack {
+                ProgressBarView()
                 HabitRowView()
                     .navigationTitle(Text("Habits"))
             } //end NavigationStack
@@ -43,15 +44,8 @@ struct HabitRowView: View {
                         Image(systemName: "checkmark.circle")
 //                                item.isCompleted ? "checkmark.circle" : "circle")
 //                            .foregroundColor(item.isCompleted ? .green : .red)
-                            .frame(width: 36, height: 36)
                             .font(Font.largeTitle)
-                            .padding(15)
-                            .foregroundStyle(Color.orange)
-                            .background(
-                                Circle()
-                                    .fill(Color.yellow.opacity(0.4))
-                                    .stroke(.yellow, lineWidth: 4)
-                            )
+                            .padding(10)
 
                         Text(habit.name)
                             .font(.headline)
@@ -61,6 +55,48 @@ struct HabitRowView: View {
                 }
             }
         }
+    }
+}
+
+struct ProgressBarView: View {
+//    var viewModel: HabitViewModel
+    
+    var body: some View {
+        HStack(spacing: 20) {
+            Group {
+                HStack {
+                    Image (systemName: "checkmark.circle")
+                        .font(.largeTitle.bold())
+                        .foregroundColor(Color.green)
+                    VStack (alignment: .center, spacing: 5) {
+                        
+                        Text ("Today")
+                            .font(.caption)
+                        Text ("0/1")
+                            .font(.title.bold())
+                    }
+                }
+                HStack {
+                    Image (systemName: "flame")
+                        .font(.largeTitle.bold())
+                        .foregroundColor(Color.orange)
+                    VStack (alignment: .center, spacing: 5){
+                        Text ("Total Streak")
+                            .font(.caption)
+                        Text ("0")
+                            .font(Font.title.bold())
+                    }
+                    
+                }
+
+            }
+            .padding()
+            .background(.background)
+            .cornerRadius(10)
+            .shadow(radius: 5)
+            
+        }
+        .padding(10)
     }
 }
 
