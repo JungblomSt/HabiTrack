@@ -15,6 +15,7 @@
 		D66504C82FA147DA000762CC /* HabitDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66504C72FA147DA000762CC /* HabitDetailView.swift */; };
 		D66504DF2FA15FDF000762CC /* HabitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66504822FA0D5B4000762CC /* HabitViewModel.swift */; };
 		D66504E02FA15FEC000762CC /* HabitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66504812FA0D448000762CC /* HabitModel.swift */; };
+		D66504E22FA20CD2000762CC /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66504E12FA20CD2000762CC /* ProgressBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		D66504882FA1070F000762CC /* HabitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitListView.swift; sourceTree = "<group>"; };
 		D665048A2FA1072A000762CC /* HabitRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRowView.swift; sourceTree = "<group>"; };
 		D66504C72FA147DA000762CC /* HabitDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailView.swift; sourceTree = "<group>"; };
+		D66504E12FA20CD2000762CC /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -83,6 +85,7 @@
 				D66504752FA0C937000762CC /* ContentView.swift */,
 				D66504842FA10382000762CC /* AddHabitView.swift */,
 				D66504C72FA147DA000762CC /* HabitDetailView.swift */,
+				D66504E12FA20CD2000762CC /* ProgressBarView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 				D665048B2FA10745000762CC /* HabitRowView.swift in Sources */,
 				D66504852FA10382000762CC /* AddHabitView.swift in Sources */,
 				D66504872FA103BE000762CC /* AddHabitViewModel.swift in Sources */,
+				D66504E22FA20CD2000762CC /* ProgressBarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,10 +1,12 @@
 import Foundation
+import SwiftData
 
+@Model
 class Habit: Identifiable{
     var id: UUID
     var name: String
     var createdAt: Date
-    var completions: [HabitCompletion]
+    var completedDates: [Date] = []
     
     init(
         name: String
@@ -12,10 +14,19 @@ class Habit: Identifiable{
         self.id = UUID()
         self.name = name
         self.createdAt = Date()
-        self.completions = []
+        self.completedDates = []
     }
     
+    var isCompletedToday: Bool {
+        let calendar = Calendar.current
+        return completedDates.contains { date in
+            calendar.isDateInToday(date)
+        }
+    }
 }
+
+
+
 class HabitCompletion {
     var id: UUID
     var date: Date
@@ -26,10 +37,4 @@ class HabitCompletion {
         self.date = date
     }
 }
-//extension Habit {
-//    static var habits: [Habit] = [
-//        Habit(name: Springa)
-//        Habit(name: Läsa)
-//        Habit(name: Vila)
-//    ]
-//}
+

@@ -2,16 +2,19 @@
 import SwiftUI
 
 struct AddHabitView: View {
+    @State var addHabitViewModel = AddHabitViewModel()
+    
     var body: some View {
         VStack {
             Text("Add Habit")
                 .font(Font.largeTitle)
                 .bold()
                 .padding(10)
-            TextField("New Habit", text: .constant(""))
+            TextField("New Habit", text: $addHabitViewModel.name)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             Button {
+//                habits.name.append(addHabitViewModel.name)
 
             } label: {
                 HStack {
