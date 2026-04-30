@@ -1,42 +1,51 @@
 import SwiftUI
+import SwiftData
 
 struct HabitListView: View {
-    @State private var viewModel = HabitViewModel()
-    
+    let viewModel: HabitViewModel
+    @State private var showAddHabit = false
     
     var body: some View {
-        TabView {
             
             NavigationStack {
-                ProgressBarView()
-                HabitRowView()
-                    .navigationTitle(Text("Habits"))
-                    .navigationSubtitle(Text(dateText))
+                VStack {
+                    ProgressBarView()
+                    HabitRowView()
+                }
+                .navigationTitle("Habits")
+                .navigationSubtitle(Text(dateText))
+                .toolbar {
+                    ToolbarItem(placement: .primaryAction) {
+                        Button {
+                            showAddHabit = true
+                        } label: {
+                            Image(systemName: "plus")
+                        }
+                    }
+                }
+                .sheet(isPresented: $showAddHabit) {
+                    AddHabitView { name in viewModel.addHabit(name: name)
+                    }
+                }
+
             } //end NavigationStack
-            
-            .tabItem {
-                Label("Habits", systemImage: "list.bullet")
-            }
-            NavigationStack {
-                AddHabitView()
-            }
-            .tabItem {
-                Label("Add", systemImage: "plus")
-            }
-            
-        } //end TabView
+
         .environment(viewModel)
 
     }
+    private var dateText: String {
+        let fmt = DateFormatter()
+        fmt.dateFormat = "d MMM."
+        return fmt.string(from: Date())
+    }
 }
 
-private var dateText: String {
-    let fmt = DateFormatter()
-    fmt.dateFormat = "d MMM."
-    return fmt.string(from: Date())
-}
+
 
 
 #Preview {
-    HabitListView()
+    let container = try! ModelContainer(for: Habit.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
+    let viewModel = HabitViewModel(modelContext: container.mainContext)
+    HabitListView(viewModel: viewModel)
+        .modelContainer(container)
 }

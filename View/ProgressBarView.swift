@@ -42,7 +42,7 @@ struct ProgressBarView: View {
         .padding(10)
     }
 }
-#Preview {
-    ProgressBarView()
-        .environment(HabitViewModel())
-}
+//#Preview {
+//    ProgressBarView()
+//        .environment(HabitViewModel())
+//}

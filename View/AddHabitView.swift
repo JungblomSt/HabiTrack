@@ -1,20 +1,27 @@
 
 import SwiftUI
+import SwiftData
 
 struct AddHabitView: View {
-    @State var addHabitViewModel = AddHabitViewModel()
+    @Environment(\.dismiss) var dismiss
+    @State private var name = ""
+    let onAdd: (String) -> Void
     
     var body: some View {
         VStack {
             Text("Add Habit")
-                .font(Font.largeTitle)
+                .font(.largeTitle)
                 .bold()
                 .padding(10)
-            TextField("New Habit", text: $addHabitViewModel.name)
+            
+            TextField("New Habit", text: $name)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
+            
             Button {
-//                habits.name.append(addHabitViewModel.name)
+                guard !name.trimmingCharacters(in: .whitespaces).isEmpty else { return }
+                    onAdd(name)
+                    dismiss()
 
             } label: {
                 HStack {
@@ -31,8 +38,4 @@ struct AddHabitView: View {
             .padding(.horizontal)
         }
     }
-}
-
-#Preview {
-    AddHabitView()
 }

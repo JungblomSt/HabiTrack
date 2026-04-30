@@ -6,11 +6,9 @@ class Habit: Identifiable{
     var id: UUID
     var name: String
     var createdAt: Date
-    var completedDates: [Date] = []
+    var completedDates: [Date]
     
-    init(
-        name: String
-    ) {
+    init(name: String) {
         self.id = UUID()
         self.name = name
         self.createdAt = Date()
@@ -19,22 +17,17 @@ class Habit: Identifiable{
     
     var isCompletedToday: Bool {
         let calendar = Calendar.current
-        return completedDates.contains { date in
-            calendar.isDateInToday(date)
+        return completedDates.contains { calendar.isDateInToday($0)}
+    }
+    
+    func toggleCompletionToday() {
+        let calendar = Calendar.current
+        if isCompletedToday {
+            completedDates.removeAll { calendar.isDateInToday($0) }
+        } else {
+            completedDates.append(Date())
         }
     }
 }
 
-
-
-class HabitCompletion {
-    var id: UUID
-    var date: Date
-    var habit: Habit?
- 
-    init(date: Date = Date()) {
-        self.id = UUID()
-        self.date = date
-    }
-}
 

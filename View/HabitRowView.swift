@@ -2,7 +2,7 @@ import SwiftUI
 
 struct HabitRowView: View {
     @Environment(HabitViewModel.self) private var viewModel
-    
+//    let habit: Habit
     var body: some View {
 
         List {
@@ -29,8 +29,8 @@ struct HabitRowView: View {
         }
     }
 }
-#Preview {
-    HabitRowView()
-        .environment(HabitViewModel())
-}
+//#Preview {
+//    HabitRowView()
+//        .environment(HabitViewModel())
+//}
 
