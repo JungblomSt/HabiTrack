@@ -5,15 +5,17 @@ import Observation
 
 @Observable
 class HabitViewModel {
-    var habits: [Habit] = [
-            Habit(name: "Workout"),
-            Habit(name: "Read") ]
+    var habits: [Habit] = []
     private var modelContext: ModelContext
     
     init(modelContext: ModelContext) {
         self.modelContext = modelContext
         fetchHabits()
         
+    }
+    
+    var longestStreak: Int {
+        habits.map(\.currentStreak).max() ?? 0
     }
     
     func fetchHabits() {
@@ -30,5 +32,9 @@ class HabitViewModel {
         fetchHabits()
     }
     
+    func toggleCompletion(_ habit: Habit) {
+        habit.toggleCompletionToday()
+        fetchHabits()
+    }
     
 }

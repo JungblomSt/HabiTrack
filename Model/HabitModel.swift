@@ -15,6 +15,26 @@ class Habit: Identifiable{
         self.completedDates = []
     }
     
+    var currentStreak: Int {
+        let calendar = Calendar.current
+        var streak: Int = 0
+        var currentDate = Date()
+        
+        if !isCompletedToday {
+            currentDate = calendar.date(byAdding: .day, value: -1, to: currentDate)!
+        }
+        while true {
+            let completed = completedDates.contains { calendar.isDate($0, inSameDayAs: currentDate) }
+            if !completed {
+                break
+            }
+            streak += 1
+            currentDate = calendar.date(byAdding: .day, value: -1, to: currentDate)!
+            
+        }
+        return streak
+    }
+    
     var isCompletedToday: Bool {
         let calendar = Calendar.current
         return completedDates.contains { calendar.isDateInToday($0)}

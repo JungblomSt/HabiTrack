@@ -24,9 +24,9 @@ struct ProgressBarView: View {
                         .font(.largeTitle.bold())
                         .foregroundColor(Color.orange)
                     VStack (alignment: .center, spacing: 5){
-                        Text ("Longest Streak")
+                        Text ("Streak")
                             .font(.caption)
-                        Text ("0")
+                        Text ("\(viewModel.longestStreak)")
                             .font(Font.title.bold())
                     }
                     
@@ -42,7 +42,3 @@ struct ProgressBarView: View {
         .padding(10)
     }
 }
-//#Preview {
-//    ProgressBarView()
-//        .environment(HabitViewModel())
-//}

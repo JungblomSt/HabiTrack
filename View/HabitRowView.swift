@@ -2,7 +2,6 @@ import SwiftUI
 
 struct HabitRowView: View {
     @Environment(HabitViewModel.self) private var viewModel
-//    let habit: Habit
     var body: some View {
 
         List {
@@ -11,10 +10,13 @@ struct HabitRowView: View {
                     HabitDetailView(habit: habit)
                 } label: {
                     HStack {
-                        Image(systemName: habit.isCompletedToday ? "checkmark.circle" : "circle")
-                            .foregroundColor(habit.isCompletedToday ? .green : .secondary)
-                            .font(Font.largeTitle)
-                            .padding(10)
+                        Button(action: { viewModel.toggleCompletion(habit)}) {
+                            Image(systemName: habit.isCompletedToday ? "checkmark.circle" : "circle")
+                                .foregroundColor(habit.isCompletedToday ? .green : .secondary)
+                                .font(.largeTitle)
+                                .padding(10)
+                        }
+                        .buttonStyle(.plain)
 
                         Text(habit.name)
                             .font(.headline)
@@ -29,8 +31,5 @@ struct HabitRowView: View {
         }
     }
 }
-//#Preview {
-//    HabitRowView()
-//        .environment(HabitViewModel())
-//}
+
 
