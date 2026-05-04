@@ -21,6 +21,13 @@ class HabitViewModel {
         habits.map(\.currentStreak).max() ?? 0
     }
     
+    var progressToday: Double {
+        guard !habits.isEmpty else { return 0 }
+        let totalCount = Double(habits.count)
+        let completedCount = Double(completedTodayCount)
+        return completedCount / totalCount
+    }
+    
     func fetchHabits() {
         let descriptor = FetchDescriptor<Habit>(
             sortBy: [SortDescriptor(\.order)]
