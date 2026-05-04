@@ -13,6 +13,9 @@ class HabitViewModel {
         fetchHabits()
         
     }
+    var completedTodayCount: Int {
+        habits.filter(\.isCompletedToday).count
+    }
     
     var longestStreak: Int {
         habits.map(\.currentStreak).max() ?? 0

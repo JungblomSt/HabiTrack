@@ -15,7 +15,7 @@ struct ProgressBarView: View {
                         
                         Text ("Today")
                             .font(.caption)
-                        Text ("0/1")
+                        Text ("\(viewModel.completedTodayCount)/\(viewModel.habits.count)")
                             .font(.title.bold())
                     }
                 }
