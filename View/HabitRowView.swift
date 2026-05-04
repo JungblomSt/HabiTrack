@@ -8,7 +8,8 @@ struct HabitRowView: View {
             ForEach(viewModel.habits) { habit in
                 NavigationLink {
                     HabitDetailView(habit: habit)
-                } label: {
+                }
+                label: {
                     HStack {
                         Button(action: { viewModel.toggleCompletion(habit)}) {
                             Image(systemName: habit.isCompletedToday ? "checkmark.circle" : "circle")
@@ -28,8 +29,20 @@ struct HabitRowView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
+            .onMove { from, to in
+                viewModel.habits.move(fromOffsets: from, toOffset: to)
+                for (i, habit) in viewModel.habits.enumerated() {
+                    habit.order = i
+                }
+            }
         }
     }
-}
+//    func moveHabit(from: IndexSet, to: Int) {
+//        viewModel.habits.move(fromOffsets: from, toOffset: to)
+//        for (i, habit) in viewModel.habits.enumerated() {
+//            habit.order = i
+//        }
+//    }
 
+}
 

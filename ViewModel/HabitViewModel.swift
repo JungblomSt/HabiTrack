@@ -20,21 +20,30 @@ class HabitViewModel {
     
     func fetchHabits() {
         let descriptor = FetchDescriptor<Habit>(
-            sortBy: [SortDescriptor(\.createdAt)]
+            sortBy: [SortDescriptor(\.order)]
         )
         habits = (try? modelContext.fetch(descriptor)) ?? []
     }
     
     func addHabit(name: String) {
         guard !name.trimmingCharacters(in: .whitespaces).isEmpty else { return }
-                let newHabit = Habit(name: name)
+        let newHabit = Habit(name: name, order: habits.count)
                 modelContext.insert(newHabit)
+        try? modelContext.save()
         fetchHabits()
     }
     
     func toggleCompletion(_ habit: Habit) {
         habit.toggleCompletionToday()
+        try? modelContext.save()
         fetchHabits()
     }
+    
+    func deleteHabit(_ habit: Habit) {
+        modelContext.delete(habit)
+        try? modelContext.save()
+        fetchHabits()
+    }
+    
     
 }

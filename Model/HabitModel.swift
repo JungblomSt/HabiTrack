@@ -7,12 +7,14 @@ class Habit: Identifiable{
     var name: String
     var createdAt: Date
     var completedDates: [Date]
+    var order: Int
     
-    init(name: String) {
+    init(name: String, order: Int = 0) {
         self.id = UUID()
         self.name = name
         self.createdAt = Date()
         self.completedDates = []
+        self.order = order
     }
     
     var currentStreak: Int {

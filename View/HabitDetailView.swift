@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HabitDetailView: View {
+    @Environment(HabitViewModel.self) private var viewModel
+    @Environment(\.dismiss) var dismiss
     let habit: Habit
     
     var body: some View {
@@ -22,7 +24,8 @@ struct HabitDetailView: View {
 //                    .foregroundStyle(Color.black.opacity(0.8))
                 
                 Button() {
-                    
+                    viewModel.deleteHabit(habit)
+                    dismiss()
                 } label: {
                     HStack {
                         Image(systemName: "trash")
