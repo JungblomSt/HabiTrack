@@ -21,10 +21,13 @@ struct HabitRowView: View {
 
                         Text(habit.name)
                             .font(.headline)
+                        Spacer()
                         
-//                        Text("\(habit.completionCount)")
-//                            .font(.caption)
-
+                        HStack {
+                            Image(systemName: "flame")
+                                .foregroundStyle(Color(.orange))
+                            Text("\(habit.currentStreak)")
+                        }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
@@ -37,12 +40,5 @@ struct HabitRowView: View {
             }
         }
     }
-//    func moveHabit(from: IndexSet, to: Int) {
-//        viewModel.habits.move(fromOffsets: from, toOffset: to)
-//        for (i, habit) in viewModel.habits.enumerated() {
-//            habit.order = i
-//        }
-//    }
-
 }
 
