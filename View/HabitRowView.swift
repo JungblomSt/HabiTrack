@@ -2,8 +2,9 @@ import SwiftUI
 
 struct HabitRowView: View {
     @Environment(HabitViewModel.self) private var viewModel
+    let today: Date
     var body: some View {
-
+        
         List {
             ForEach(viewModel.habits) { habit in
                 NavigationLink {
@@ -18,7 +19,7 @@ struct HabitRowView: View {
                                 .padding(10)
                         }
                         .buttonStyle(.plain)
-
+                        
                         Text(habit.name)
                             .font(.headline)
                         Spacer()
