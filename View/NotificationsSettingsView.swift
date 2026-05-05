@@ -2,6 +2,7 @@
 import SwiftUI
 
 struct NotificationsSettingsView: View {
+    let viewModel = NotificationsViewModel()
     @AppStorage("selectedTime") private var selectedTime: Date = Date()
     @AppStorage("isActivated") private var isActivated = false
     
@@ -9,37 +10,26 @@ struct NotificationsSettingsView: View {
     var body: some View {
         VStack (spacing: 20) {
             Button("Approve Notifications") {
-                NotificationManager.instance.requestNotifications()
+                viewModel.requestPermission()
                 
             }
             Toggle("Activate Notifications", isOn: $isActivated)
                 .onChange(of: isActivated) { _, activated in
                     if activated {
-                        activateNotifications()
+                        viewModel.activateNotifications(selectedTime: selectedTime)
                     } else {
-                        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+                        viewModel.cancelNotifications()
                     }
-                    
                 }
             DatePicker("Time for notification", selection: $selectedTime, displayedComponents: .hourAndMinute)
                 .onChange(of: selectedTime) { _, _ in
                     if isActivated {
-                        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-                        activateNotifications()
+                        viewModel.cancelNotifications()
+                        viewModel.activateNotifications(selectedTime: selectedTime)
                     }
                 }
-
-
         }
         .padding()
-    }
-    private func activateNotifications() {
-        let components = Calendar.current.dateComponents([.hour, .minute], from: selectedTime)
-        NotificationManager.instance.scheduleNotification(
-            title: "HabiTrack",
-            body: "Time to make your habit",
-            minute: components.minute!,
-            hour: components.hour!)
     }
 }
 
