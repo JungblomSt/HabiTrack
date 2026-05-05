@@ -15,6 +15,9 @@
 		D66504DF2FA15FDF000762CC /* HabitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66504822FA0D5B4000762CC /* HabitViewModel.swift */; };
 		D66504E02FA15FEC000762CC /* HabitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66504812FA0D448000762CC /* HabitModel.swift */; };
 		D66504E22FA20CD2000762CC /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66504E12FA20CD2000762CC /* ProgressBarView.swift */; };
+		D66BB09C2FAA005F00704582 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66BB09B2FAA005D00704582 /* NotificationManager.swift */; };
+		D66BB09E2FAA04A500704582 /* NotificationsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66BB09D2FAA04A500704582 /* NotificationsSettingsView.swift */; };
+		D66BB0A22FAA44CB00704582 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66BB0A12FAA44B900704582 /* NotificationsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +30,9 @@
 		D665048A2FA1072A000762CC /* HabitRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRowView.swift; sourceTree = "<group>"; };
 		D66504C72FA147DA000762CC /* HabitDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailView.swift; sourceTree = "<group>"; };
 		D66504E12FA20CD2000762CC /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
+		D66BB09B2FAA005D00704582 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		D66BB09D2FAA04A500704582 /* NotificationsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSettingsView.swift; sourceTree = "<group>"; };
+		D66BB0A12FAA44B900704582 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -51,11 +57,12 @@
 		D66504672FA0C937000762CC = {
 			isa = PBXGroup;
 			children = (
-				D66504722FA0C937000762CC /* HabiTrack */,
+				D66BB09F2FAA09DE00704582 /* Manager */,
 				D66504802FA0C973000762CC /* ViewModel */,
 				D665047F2FA0C961000762CC /* View */,
 				D665047E2FA0C94C000762CC /* Model */,
 				D66504712FA0C937000762CC /* Products */,
+				D66504722FA0C937000762CC /* HabiTrack */,
 			);
 			sourceTree = "<group>";
 		};
@@ -84,6 +91,7 @@
 				D66504842FA10382000762CC /* AddHabitView.swift */,
 				D66504C72FA147DA000762CC /* HabitDetailView.swift */,
 				D66504E12FA20CD2000762CC /* ProgressBarView.swift */,
+				D66BB09D2FAA04A500704582 /* NotificationsSettingsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -91,9 +99,18 @@
 		D66504802FA0C973000762CC /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				D66BB0A12FAA44B900704582 /* NotificationsViewModel.swift */,
 				D66504822FA0D5B4000762CC /* HabitViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D66BB09F2FAA09DE00704582 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				D66BB09B2FAA005D00704582 /* NotificationManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -174,8 +191,11 @@
 				D66504C82FA147DA000762CC /* HabitDetailView.swift in Sources */,
 				D66504762FA0C937000762CC /* ContentView.swift in Sources */,
 				D66504892FA10722000762CC /* HabitListView.swift in Sources */,
+				D66BB09E2FAA04A500704582 /* NotificationsSettingsView.swift in Sources */,
+				D66BB0A22FAA44CB00704582 /* NotificationsViewModel.swift in Sources */,
 				D66504DF2FA15FDF000762CC /* HabitViewModel.swift in Sources */,
 				D665048B2FA10745000762CC /* HabitRowView.swift in Sources */,
+				D66BB09C2FAA005F00704582 /* NotificationManager.swift in Sources */,
 				D66504852FA10382000762CC /* AddHabitView.swift in Sources */,
 				D66504E22FA20CD2000762CC /* ProgressBarView.swift in Sources */,
 			);
