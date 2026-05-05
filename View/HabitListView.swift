@@ -4,6 +4,7 @@ import SwiftData
 struct HabitListView: View {
     @Environment(\.scenePhase) private var scenePhase
     let viewModel: HabitViewModel
+    @State private var showNotificationsSettings = false
     @State private var showAddHabit = false
     @State private var today = Date()
     
@@ -24,10 +25,20 @@ struct HabitListView: View {
                         Image(systemName: "plus")
                     }
                 }
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        showNotificationsSettings = true
+                    } label: {
+                        Image(systemName: "bell.and.waves.left.and.right")
+                    }
+                }
             }
             .sheet(isPresented: $showAddHabit) {
                 AddHabitView { name in viewModel.addHabit(name: name)
                 }
+            }
+            .sheet(isPresented: $showNotificationsSettings) {
+                NotificationsSettingsView()
             }
             
         } //end NavigationStack
