@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		D66504762FA0C937000762CC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66504752FA0C937000762CC /* ContentView.swift */; };
 		D66504852FA10382000762CC /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66504842FA10382000762CC /* AddHabitView.swift */; };
-		D66504892FA10722000762CC /* HabitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66504882FA1070F000762CC /* HabitListView.swift */; };
+		D66504892FA10722000762CC /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66504882FA1070F000762CC /* MainView.swift */; };
 		D665048B2FA10745000762CC /* HabitRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D665048A2FA1072A000762CC /* HabitRowView.swift */; };
 		D66504C82FA147DA000762CC /* HabitDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66504C72FA147DA000762CC /* HabitDetailView.swift */; };
 		D66504DF2FA15FDF000762CC /* HabitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66504822FA0D5B4000762CC /* HabitViewModel.swift */; };
@@ -26,7 +26,7 @@
 		D66504812FA0D448000762CC /* HabitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitModel.swift; sourceTree = "<group>"; };
 		D66504822FA0D5B4000762CC /* HabitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitViewModel.swift; sourceTree = "<group>"; };
 		D66504842FA10382000762CC /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
-		D66504882FA1070F000762CC /* HabitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitListView.swift; sourceTree = "<group>"; };
+		D66504882FA1070F000762CC /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		D665048A2FA1072A000762CC /* HabitRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitRowView.swift; sourceTree = "<group>"; };
 		D66504C72FA147DA000762CC /* HabitDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailView.swift; sourceTree = "<group>"; };
 		D66504E12FA20CD2000762CC /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				D665048A2FA1072A000762CC /* HabitRowView.swift */,
-				D66504882FA1070F000762CC /* HabitListView.swift */,
+				D66504882FA1070F000762CC /* MainView.swift */,
 				D66504752FA0C937000762CC /* ContentView.swift */,
 				D66504842FA10382000762CC /* AddHabitView.swift */,
 				D66504C72FA147DA000762CC /* HabitDetailView.swift */,
@@ -190,7 +190,7 @@
 				D66504E02FA15FEC000762CC /* HabitModel.swift in Sources */,
 				D66504C82FA147DA000762CC /* HabitDetailView.swift in Sources */,
 				D66504762FA0C937000762CC /* ContentView.swift in Sources */,
-				D66504892FA10722000762CC /* HabitListView.swift in Sources */,
+				D66504892FA10722000762CC /* MainView.swift in Sources */,
 				D66BB09E2FAA04A500704582 /* NotificationsSettingsView.swift in Sources */,
 				D66BB0A22FAA44CB00704582 /* NotificationsViewModel.swift in Sources */,
 				D66504DF2FA15FDF000762CC /* HabitViewModel.swift in Sources */,

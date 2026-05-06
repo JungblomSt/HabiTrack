@@ -5,19 +5,20 @@ import SwiftData
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var viewModel: HabitViewModel?
+    @State private var notificationsViewModel = NotificationsViewModel()
 
     var body: some View {
         Group {
             if let vm = viewModel {
-                HabitListView(viewModel: vm)
+                MainView(viewModel: vm)
+                    .environment(notificationsViewModel)
             } else {
                 ProgressView()
-                    .onAppear { viewModel = HabitViewModel(modelContext: modelContext) }
+                    .onAppear {
+                        viewModel = HabitViewModel(modelContext: modelContext)
+                    }
             }
         }
     }
 }
 
-#Preview {
-    ContentView()
-}

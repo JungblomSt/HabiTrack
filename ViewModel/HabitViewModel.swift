@@ -49,7 +49,16 @@ class HabitViewModel {
         fetchHabits()
     }
     
-    func deleteHabit(_ habit: Habit) {
+    func saveHabits() {
+        do {
+            try modelContext.save()
+        } catch {
+            print("Save error: \(error)")
+        }
+    }
+    
+    func deleteHabit(_ habit: Habit, notificationsViewModel: NotificationsViewModel) {
+        notificationsViewModel.cancelSingleNotification(for: habit)
         modelContext.delete(habit)
         try? modelContext.save()
         fetchHabits()

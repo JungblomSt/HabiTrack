@@ -8,6 +8,9 @@ class Habit: Identifiable{
     var createdAt: Date
     var completedDates: [Date]
     var order: Int
+    var notificationActivated: Bool
+    var notificationHour: Int
+    var notificationMinute: Int
     
     init(name: String, order: Int = 0) {
         self.id = UUID()
@@ -15,6 +18,13 @@ class Habit: Identifiable{
         self.createdAt = Date()
         self.completedDates = []
         self.order = order
+        self.notificationActivated = false
+        self.notificationHour = 8
+        self.notificationMinute = 0
+    }
+    
+    var notificationIdentifier: String {
+        "habit-\(id.uuidString)"
     }
     
     var currentStreak: Int {
@@ -31,7 +41,8 @@ class Habit: Identifiable{
                 break
             }
             streak += 1
-            currentDate = calendar.date(byAdding: .day, value: -1, to: currentDate)!
+            guard let newDate = calendar.date(byAdding: .day, value: -1, to: currentDate) else { break }
+            currentDate = newDate
             
         }
         return streak

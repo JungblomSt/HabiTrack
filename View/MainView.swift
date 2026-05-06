@@ -1,12 +1,13 @@
 import SwiftUI
 import SwiftData
 
-struct HabitListView: View {
+struct MainView: View {
     @Environment(\.scenePhase) private var scenePhase
     let viewModel: HabitViewModel
-    @State private var showNotificationsSettings = false
+    @Environment(NotificationsViewModel.self) private var notificationsViewModel
     @State private var showAddHabit = false
     @State private var today = Date()
+    @AppStorage("notificationsPaused") private var notificationsPaused = false
     
     var body: some View {
         
@@ -27,9 +28,16 @@ struct HabitListView: View {
                 }
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
-                        showNotificationsSettings = true
+                        notificationsPaused.toggle()
+                        if notificationsPaused {
+                            notificationsViewModel.cancelNotifications()
+                        } else {
+                            notificationsViewModel.reActivateAllNotifications(habits: viewModel.habits)
+                        }
                     } label: {
-                        Image(systemName: "bell.and.waves.left.and.right")
+                        Image(systemName: notificationsPaused ? "bell.slash.circle" : "bell.circle")
+                            .font(.title)
+                            .foregroundStyle(notificationsPaused ? Color.secondary : Color.primary)
                     }
                 }
             }
@@ -37,14 +45,18 @@ struct HabitListView: View {
                 AddHabitView { name in viewModel.addHabit(name: name)
                 }
             }
-            .sheet(isPresented: $showNotificationsSettings) {
-                NotificationsSettingsView()
-            }
             
         } //end NavigationStack
         .onChange(of: scenePhase) { _, phase in
             if phase == .active {
                 today = Date()
+                for habit in viewModel.habits {
+                    if habit.isCompletedToday {
+                        notificationsViewModel.cancelSingleNotification(for: habit)
+                    } else if habit.notificationActivated && !notificationsPaused{
+                        notificationsViewModel.updateNotification(for: habit)
+                    }
+                }
             }
         }
         .environment(viewModel)
@@ -68,6 +80,7 @@ struct HabitListView: View {
     viewModel.addHabit(name: "Run")
     viewModel.addHabit(name: "Read")
     
-    return HabitListView(viewModel: viewModel)
+    return MainView(viewModel: viewModel)
+        .environment(NotificationsViewModel())
         .modelContainer(container)
 }

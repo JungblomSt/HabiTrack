@@ -2,6 +2,7 @@ import SwiftUI
 
 struct HabitRowView: View {
     @Environment(HabitViewModel.self) private var viewModel
+    @AppStorage("notificationsPaused") private var notificationsPaused = false
     let today: Date
     var body: some View {
         
@@ -25,6 +26,14 @@ struct HabitRowView: View {
                         Spacer()
                         
                         HStack {
+                            if habit.notificationActivated && !notificationsPaused{
+                                Image(systemName: "bell.fill")
+                                Text(String(format: "%02d:%02d", habit.notificationHour, habit.notificationMinute))
+                            } else if habit.notificationActivated && notificationsPaused {
+                                Image(systemName: "bell.slash.fill")
+                                    .foregroundStyle(Color.secondary)
+                            }
+                            
                             Image(systemName: "flame")
                                 .foregroundStyle(Color(.orange))
                             Text("\(habit.currentStreak)")
@@ -38,6 +47,7 @@ struct HabitRowView: View {
                 for (i, habit) in viewModel.habits.enumerated() {
                     habit.order = i
                 }
+                viewModel.saveHabits()
             }
         }
     }
