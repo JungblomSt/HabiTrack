@@ -7,18 +7,18 @@ import SwiftData
 class NotificationsViewModel {
     
     func requestPermission() {
-        NotificationManager.instance.requestNotifications()
+        NotificationManager.instance.requestNotificationPermission()
     }
     
     func updateNotification(for habit: Habit) {
         if habit.notificationActivated {
             NotificationManager.instance.scheduleHabitNotification(for: habit)
         } else {
-            NotificationManager.instance.cancel(for: habit)
+            NotificationManager.instance.cancelHabitNotification(for: habit)
         }
     }
     
-//    not in use yet
+//    not in use at the moment
 //    func setGlobalNotifications(selectedTime: Date) {
 //        let components = Calendar.current.dateComponents([.hour, .minute], from: selectedTime)
 //        NotificationManager.instance.scheduleGlobalNotification(
@@ -46,6 +46,6 @@ class NotificationsViewModel {
     }
     
     func cancelSingleNotification(for habit: Habit) {
-        NotificationManager.instance.cancel(for: habit)
+        NotificationManager.instance.cancelHabitNotification(for: habit)
     }
 }

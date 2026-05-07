@@ -8,6 +8,7 @@ struct ProgressBarView: View {
     var body: some View {
         HStack(spacing: 20) {
             Group {
+                // -- Progress Today Card --
                 HStack {
                     Spacer()
                     CircularProgressView(progress: viewModel.progressToday)
@@ -21,6 +22,7 @@ struct ProgressBarView: View {
                     }
                     Spacer()
                 }
+                // -- Longest Active Streak Card --
                 HStack {
                     Spacer()
                     Image (systemName: "flame.fill")
@@ -76,10 +78,6 @@ struct CircularProgressView: View {
         configurations: ModelConfiguration(isStoredInMemoryOnly: true)
     )
     let viewModel = HabitViewModel(modelContext: container.mainContext)
-    
-    viewModel.addHabit(name: "Träna")
-    viewModel.addHabit(name: "Läsa")
-    viewModel.addHabit(name: "Meditera")
     
     return ProgressBarView()
         .environment(viewModel)

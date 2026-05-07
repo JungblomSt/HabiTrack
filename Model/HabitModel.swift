@@ -4,20 +4,20 @@ import SwiftData
 @Model
 class Habit: Identifiable{
     var id: UUID
-    var name: String
+    var title: String
     var createdAt: Date
     var completedDates: [Date]
-    var order: Int
+    var orderIndex: Int
     var notificationActivated: Bool
     var notificationHour: Int
     var notificationMinute: Int
     
-    init(name: String, order: Int = 0) {
+    init(title: String, order: Int = 0) {
         self.id = UUID()
-        self.name = name
+        self.title = title
         self.createdAt = Date()
         self.completedDates = []
-        self.order = order
+        self.orderIndex = order
         self.notificationActivated = false
         self.notificationHour = 8
         self.notificationMinute = 0

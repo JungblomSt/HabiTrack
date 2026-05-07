@@ -3,8 +3,10 @@ import SwiftUI
 import SwiftData
 
 struct AddHabitView: View {
+    @Environment(HabitViewModel.self) private var viewModel
     @Environment(\.dismiss) var dismiss
-    @State private var name = ""
+    @State private var title = ""
+    @State private var errorMessage = ""
     let onAdd: (String) -> Void
     
     var body: some View {
@@ -14,15 +16,24 @@ struct AddHabitView: View {
                 .bold()
                 .padding(10)
             
-            TextField("New Habit", text: $name)
+            TextField("New Habit", text: $title)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             
+            if !errorMessage.isEmpty {
+                Text(errorMessage)
+                    .foregroundStyle(.red)
+                    .font(.caption)
+                    .padding(.horizontal)
+            }
+            
             Button {
-                guard !name.trimmingCharacters(in: .whitespaces).isEmpty else { return }
-                    onAdd(name)
-                    dismiss()
-
+                if let error = viewModel.validateHabitTitle(title) {
+                    errorMessage = error
+                    return
+                }
+                onAdd(title.trimmingCharacters(in: .whitespaces))
+                dismiss()
             } label: {
                 HStack {
                     Image(systemName: "plus.circle.fill")

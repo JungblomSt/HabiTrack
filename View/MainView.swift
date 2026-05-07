@@ -19,6 +19,7 @@ struct MainView: View {
             .navigationTitle("Habits")
             .navigationSubtitle(Text(dateText))
             .toolbar {
+                // -- Add Habit --
                 ToolbarItem(placement: .primaryAction) {
                     Button {
                         showAddHabit = true
@@ -26,6 +27,7 @@ struct MainView: View {
                         Image(systemName: "plus")
                     }
                 }
+                // -- All Notifications --
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
                         notificationsPaused.toggle()
@@ -42,11 +44,13 @@ struct MainView: View {
                 }
             }
             .sheet(isPresented: $showAddHabit) {
-                AddHabitView { name in viewModel.addHabit(name: name)
+                AddHabitView { title in viewModel.addHabit(title: title)
                 }
             }
             
         } //end NavigationStack
+        
+        // -- Uppdate Notifications UI--
         .onChange(of: scenePhase) { _, phase in
             if phase == .active {
                 today = Date()
@@ -60,6 +64,9 @@ struct MainView: View {
             }
         }
         .environment(viewModel)
+        .onAppear {
+            notificationsViewModel.requestPermission()
+        }
         
     }
     private var dateText: String {
@@ -75,10 +82,6 @@ struct MainView: View {
         configurations: ModelConfiguration(isStoredInMemoryOnly: true)
     )
     let viewModel = HabitViewModel(modelContext: container.mainContext)
-    
-    viewModel.addHabit(name: "Jump")
-    viewModel.addHabit(name: "Run")
-    viewModel.addHabit(name: "Read")
     
     return MainView(viewModel: viewModel)
         .environment(NotificationsViewModel())

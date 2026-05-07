@@ -85,12 +85,12 @@
 		D665047F2FA0C961000762CC /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D665048A2FA1072A000762CC /* HabitRowView.swift */,
-				D66504882FA1070F000762CC /* MainView.swift */,
 				D66504752FA0C937000762CC /* ContentView.swift */,
+				D66504882FA1070F000762CC /* MainView.swift */,
+				D66504E12FA20CD2000762CC /* ProgressBarView.swift */,
+				D665048A2FA1072A000762CC /* HabitRowView.swift */,
 				D66504842FA10382000762CC /* AddHabitView.swift */,
 				D66504C72FA147DA000762CC /* HabitDetailView.swift */,
-				D66504E12FA20CD2000762CC /* ProgressBarView.swift */,
 				D66BB09D2FAA04A500704582 /* NotificationsSettingsView.swift */,
 			);
 			path = View;

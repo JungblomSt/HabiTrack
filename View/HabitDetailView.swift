@@ -10,16 +10,19 @@ struct HabitDetailView: View {
     
     @State private var notificationActivated: Bool = false
     @State private var selectedTime: Date = Date()
+    @State private var showDeleteAlert = false
     
     var body: some View {
         VStack(spacing: 10) {
             VStack {
                 Text("Started habit on: \(habit.createdAt, style: .date)")
-                    .padding()
+                    .font(.subheadline)
+                    .padding(5)
                 
                 Text("Sense then, you have done it \(habit.completedDates.count) times")
-                    .padding()
+                    .font(.subheadline)
                 
+                // MARK: -- Calendar --
                 MultiDatePicker(
                     "Completed dates",
                     selection: Binding(
@@ -33,10 +36,10 @@ struct HabitDetailView: View {
                         set: { _ in }
                     )
                 )
-                .disabled(true)
                 
                 Divider()
                 
+                // MARK: -- Notifications --
                 HStack(spacing: 12) {
                     Toggle("Reminder", isOn: $notificationActivated)
                         .onChange(of: notificationActivated) { _, activated in
@@ -56,9 +59,10 @@ struct HabitDetailView: View {
                 }
                 .padding(.horizontal)
                 
+                // MARK: -- Delete Habit --
                 Button() {
-                    viewModel.deleteHabit(habit, notificationsViewModel: notificationViewModel)
-                    dismiss()
+                    showDeleteAlert = true
+
                 } label: {
                     HStack {
                         Image(systemName: "trash")
@@ -73,15 +77,24 @@ struct HabitDetailView: View {
                 }
             }
         }
-        .navigationTitle(habit.name)
+        .navigationTitle(habit.title)
+        .alert("Delete Habit", isPresented: $showDeleteAlert) {
+            Button("Delete", role: .destructive) {
+                viewModel.deleteHabit(habit, notificationsViewModel: notificationViewModel)
+                DispatchQueue.main.async {
+                    dismiss()
+                }
+            }
+            Button("Cancel", role: .cancel) { }
+        } message: {
+            Text("Are you certain you want to delete \(habit.title) and al your progress? This cannot be undone.")
+        }
         .onAppear {
             notificationActivated = habit.notificationActivated
             var components = Calendar.current.dateComponents([.year, .month, .day], from: Date())
             components.hour = habit.notificationHour
             components.minute = habit.notificationMinute
             selectedTime = Calendar.current.date(from: components) ?? Date()
-            
-            notificationViewModel.requestPermission()
         }
     }
     private func saveNotification(activated: Bool) {
@@ -94,6 +107,7 @@ struct HabitDetailView: View {
         )
     }
 }
+
 #Preview {
     let container = try! ModelContainer(
         for: Habit.self,
@@ -101,7 +115,7 @@ struct HabitDetailView: View {
     )
     let viewModel = HabitViewModel(modelContext: container.mainContext)
     let notificationsViewModel = NotificationsViewModel()
-    let habit = Habit(name: "Läsa")
+    let habit = Habit(title: "Read")
     container.mainContext.insert(habit)
     
     return NavigationStack {

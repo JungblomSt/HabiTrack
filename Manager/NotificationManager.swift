@@ -4,7 +4,7 @@ import UserNotifications
 class NotificationManager {
     static let instance: NotificationManager = NotificationManager()
     
-    func requestNotifications() {
+    func requestNotificationPermission() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { granted, error in
             if let error = error {
                 print("Error requesting notification permissions: \(error)")
@@ -13,11 +13,12 @@ class NotificationManager {
             }
         }
     }
+    
     func scheduleHabitNotification(for habit: Habit) {
-        cancel(for: habit)
+        cancelHabitNotification(for: habit)
         
         let content = UNMutableNotificationContent()
-        content.title = "Time to \(habit.name)!"
+        content.title = "Time to \(habit.title)!"
         content.body = "Don't forget to mark it as done!"
         content.sound = .default
         
@@ -39,7 +40,7 @@ class NotificationManager {
         }
     }
     
-    func cancel(for habit: Habit) {
+    func cancelHabitNotification(for habit: Habit) {
         UNUserNotificationCenter.current().removePendingNotificationRequests(
             withIdentifiers: [habit.notificationIdentifier]
         )

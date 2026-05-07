@@ -2,6 +2,7 @@ import SwiftUI
 
 struct HabitRowView: View {
     @Environment(HabitViewModel.self) private var viewModel
+    @Environment(NotificationsViewModel.self) private var notificationsViewModel: NotificationsViewModel
     @AppStorage("notificationsPaused") private var notificationsPaused = false
     let today: Date
     var body: some View {
@@ -13,7 +14,7 @@ struct HabitRowView: View {
                 }
                 label: {
                     HStack {
-                        Button(action: { viewModel.toggleCompletion(habit)}) {
+                        Button(action: { viewModel.toggleCompletion(habit, notificationsViewModel: notificationsViewModel)}) {
                             Image(systemName: habit.isCompletedToday ? "checkmark.circle" : "circle")
                                 .foregroundColor(habit.isCompletedToday ? .green : .secondary)
                                 .font(.largeTitle)
@@ -21,7 +22,7 @@ struct HabitRowView: View {
                         }
                         .buttonStyle(.plain)
                         
-                        Text(habit.name)
+                        Text(habit.title)
                             .font(.headline)
                         Spacer()
                         
@@ -45,11 +46,10 @@ struct HabitRowView: View {
             .onMove { from, to in
                 viewModel.habits.move(fromOffsets: from, toOffset: to)
                 for (i, habit) in viewModel.habits.enumerated() {
-                    habit.order = i
+                    habit.orderIndex = i
                 }
                 viewModel.saveHabits()
             }
         }
     }
 }
-
