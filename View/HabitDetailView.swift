@@ -66,7 +66,7 @@ struct HabitDetailView: View {
                 } label: {
                     HStack {
                         Image(systemName: "trash")
-                        Text("Radera vana")
+                        Text("Delete Habit")
                     }
                     .frame(maxWidth: .infinity)
                     .padding()
