@@ -2,6 +2,8 @@
 
 A habit tracking app for iOS built with SwiftUI and SwiftData.
 
+<img width="1024" height="768" alt="HabiTrack" src="https://github.com/user-attachments/assets/317ff1ca-a7b3-4922-ae98-a3a3d5417546" />
+
 ## Features
 
 - **Track daily habits** — check off habits each day and build streaks
